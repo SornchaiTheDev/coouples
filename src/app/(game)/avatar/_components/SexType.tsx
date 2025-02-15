@@ -1,7 +1,6 @@
 "use client";
 import { Mars, Venus } from "lucide-react";
-import { useState } from "react";
-import { cn } from "../../../lib/cn";
+import { cn } from "@/lib/cn";
 import { useCloset } from "@/providers/ClosetProvider";
 
 function SexType() {

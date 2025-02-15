@@ -1,6 +1,5 @@
 import { AvatarConfigNoBoolean } from "@/configs/closet";
 import { useCloset } from "@/providers/ClosetProvider";
-import React from "react";
 import ReactNiceAvatar from "react-nice-avatar";
 
 interface Props<T extends keyof AvatarConfigNoBoolean> {
