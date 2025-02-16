@@ -1,9 +1,22 @@
-import ClosetProvider from "@/providers/ClosetProvider";
+"use client";
+import { useCloset } from "@/providers/ClosetProvider";
 import Avatar from "./_components/Avatar";
 import Closet from "./_components/Closet";
 import SexType from "./_components/SexType";
+import { useRouter } from "next/navigation";
+import { useGameContext } from "@/providers/GameProvider";
 
 export default function Home() {
+  const { config } = useCloset();
+  const { sendEvent } = useGameContext();
+
+  const router = useRouter();
+
+  const handleNext = () => {
+    sendEvent("create_avatar", JSON.stringify(config));
+    router.push("/game");
+  };
+
   return (
     <div className="h-full flex flex-col">
       <div className="p-4">
@@ -14,18 +27,19 @@ export default function Home() {
               มาเริ่มสร้างตัวละครของเธอกัน !
             </h3>
           </div>
-          <button className="border-2 bg-secondary text-background border-secondary w-fit h-fit px-3 py-1 rounded">
+          <button
+            onClick={handleNext}
+            className="border-2 bg-secondary text-background border-secondary w-fit h-fit px-3 py-1 rounded"
+          >
             ต่อไป
           </button>
         </div>
       </div>
-      <ClosetProvider>
-        <div className="flex flex-col flex-1 min-h-0 items-center mt-10 gap-6">
-          <Avatar className="w-1/2 aspect-square border-4 border-secondary" />
-          <SexType />
-          <Closet />
-        </div>
-      </ClosetProvider>
+      <div className="flex flex-col flex-1 min-h-0 items-center mt-10 gap-6">
+        <Avatar className="w-1/2 aspect-square border-4 border-secondary" />
+        <SexType />
+        <Closet />
+      </div>
     </div>
   );
 }

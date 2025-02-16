@@ -16,9 +16,11 @@ function CreatePage() {
   useEffect(() => {
     onEvent("player_joined", () => setPlayers((prev) => prev + 1));
 
-    onEvent("game_started", () => {
+    onEvent("setup_phase", () => {
       router.push("/avatar");
     });
+
+    onEvent("player_left", () => setPlayers((prev) => prev - 1));
   }, [onEvent, router]);
 
   useEffect(() => {
@@ -34,7 +36,7 @@ function CreatePage() {
     createRoom();
   }, [setRoomCode]);
 
-  const startGame = () => sendEvent("start", "");
+  const startGame = () => sendEvent("start");
 
   return (
     <div className="flex flex-col h-screen justify-center items-center text-secondary gap-4">
