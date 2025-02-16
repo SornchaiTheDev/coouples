@@ -35,6 +35,7 @@ function JoinPage() {
             value={room}
             onChange={(e) => setRoom(e.target.value)}
             maxLength={6}
+            inputMode="numeric"
             className="rounded-lg outline-none bg-secondary py-2 px-3 text-zinc-800"
           />
           <button
